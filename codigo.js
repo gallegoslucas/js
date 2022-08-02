@@ -6,7 +6,15 @@ let total = 0;
 let rucula = 800;
 let fugazzeta = 700;
 let margarita = 600;
-function ordenar(){
+
+function descuento() {
+    let pregDesc = prompt("Ingrese cupon de descuento")
+    if (pregDesc == "descuento") {
+        let totalDesc = (total*0.9);
+        console.log("Total con descuento : $" + totalDesc)
+    } else { alert("Este cupon expiro o no es valido") }
+
+}
     let pedido = prompt("Que pizza quiere pedir? (esc para terminar)");
     do {
         switch (pedido) {
@@ -38,15 +46,9 @@ function ordenar(){
 
     console.log("Total del pedido : $" + total)
     
-let pregDesc = prompt("Ingrese cupon de descuento")
-    if (pregDesc=="descuento"){
-        let totalDesc = (total * 0.9);
-        console.log("Total con descuento : $" + totalDesc)
-    }else{alert("Este cupon expiro o no es valido")}
 
-}
- 
-ordenar()
+ descuento()
+
 
 
 
