@@ -4,27 +4,25 @@ let pedido = prompt("Que pizza quiere pedir? (esc para salir)");
 let cantMargarita = 0;
 let cantFugazzeta = 0;
 let cantRucula = 0;
-
 let total = 0;
-let precioFuga = 0;
-let precioMargarita = 0;
-let precioRucula = 0;
+let rucula = 0;
+let fugazzeta = 0;
+let margarita = 0;
 do {
-    
     switch (pedido) {
-        case "margarita":
-            cantMargarita++
-            precioMargarita++
+        case "margarita" :
+            cantMargarita++;
+            margarita = 600;
             alert("Se agrego una margarita a tu pedido")
             break;
         case "rucula": 
             cantRucula++
-            precioRucula++
+            rucula = 800;
             alert("Se agrego una rucula a tu pedido")
             break;
         case "fugazzeta":
-            cantFugazzeta++
-            precioFuga++
+            cantFugazzeta++;
+            fugazzeta = 700;
             alert("Se agrego una fugazzeta a tu pedido")
             break;
         default:
@@ -32,9 +30,14 @@ do {
             break;
     }
     pedido = prompt("Que pizza quiere pedir? (esc para salir)");
+    
+    total = rucula + margarita + fugazzeta;
+
 } while (pedido != "esc")
 
-total = (precioFuga*700) + (precioMargarita*600) + (precioRucula*800);
+
+
+
     
 console.log("Su pedido es : \n" + cantFugazzeta + " Fugazzeta \n" + cantMargarita +" Margarita \n"+ cantRucula+ " Rucula")
 
