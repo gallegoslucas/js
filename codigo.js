@@ -50,7 +50,7 @@ function descuento() {
            }
     }while(cupon==false)
 }
-
+    // INICIO
 let iniciar = true;
 do{
     let comenzar = prompt("Elija una opcion (inresando el numero correspondiente) : \n1-Menu\n2-Ordenar\n3-Añadir producto al menu (solo uso del personal)\n4-Salir")
@@ -107,7 +107,7 @@ do{
         if(pedido=="listo"){console.log("Su pedido es : \n" + margarita.cantidad + " Margarita \n" + rucula.cantidad + " Rucula \n" + fugazzeta.cantidad + " Fugazzeta \n" + calabresa.cantidad + " Calabresa")
         // TOTAL $
         console.log("Total del pedido : $" + total)
-
+        // DESCUENTO
         if (total!=0){descuento()}}
     }
     // AÑADIR PRODUCTO
