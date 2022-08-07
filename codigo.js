@@ -1,14 +1,12 @@
 
 let total = 0;
-const menu = [
+const pizzas = [
     { nombre: "margarita", precio: 800, ingredientes: "Salsa de tomate, ajo, oregano, albahaca, aceite de oliva" },
     { nombre: "fugazzeta", precio: 900, ingredientes: "Salsa de tomate, mozzarella, cebolla" },
     { nombre: "calabresa", precio: 900, ingredientes: "Salsa de tomate, mozzarella, calabresa" },
-    { nombre: "rucula", precio: 950, ingerdientes: "Salsa de tomate, mozzarella, rucula, jamon crudo, parmesano"},
+    { nombre: "rucula", precio: 950, ingredientes: "Salsa de tomate, mozzarella, rucula, jamon crudo, parmesano"},
 ];
-
-
-class pizzas{
+class menu{
     constructor(nombre, ingredientes, precio,cantidad,) {
         this.nombre = nombre
         this.ingredientes = ingredientes
@@ -16,50 +14,58 @@ class pizzas{
         this.cantidad= cantidad
     }
 }
-let margarita = new pizzas("Margarita", "Salsa de tomate, ajo, oregano, albahaca, aceite de oliva", 800,0)
-let fugazzeta = new pizzas("Fugazzeta", "Salsa de tomate, mozzarella, cebolla", 900,0)
-let calabresa = new pizzas("Calabresa", "Salsa de tomate, mozzarella, calabresa", 900,0)
-let rucula = new pizzas("Rucula y jamon crudo", "Salsa de tomate, mozzarella, rucula, jamon crudo, parmesano", 950, 0)
+let margarita = new menu("Margarita", "Salsa de tomate, ajo, oregano, albahaca, aceite de oliva", 800,0)
+let fugazzeta = new menu("Fugazzeta", "Salsa de tomate, mozzarella, cebolla", 900,0)
+let calabresa = new menu("Calabresa", "Salsa de tomate, mozzarella, calabresa", 900,0)
+let rucula = new menu("Rucula y jamon crudo", "Salsa de tomate, mozzarella, rucula, jamon crudo, parmesano", 950, 0)
 
-
+// FUNCION AGREGAR PIZZA
+function agregarPizza() {
+    let nombrePizza = prompt ("Ingrese nommbre de la pizza").toLowerCase();
+    let ingredientesPizza = prompt("Ingrese los ingredientes de la pizza").toLowerCase();
+    let precioPizza = prompt("Ingrese el precio de la pizza").toLowerCase();
+    let pizzaNueva = new menu(nombrePizza, ingredientesPizza, precioPizza, 0);
+    pizzas.push(pizzaNueva)
+    
+}
 // FUNCION DE DESCUENTO
+let cupon = true;
 function descuento() {
-     {
-        let pregDesc = prompt("Ingrese cupon de descuento").toUpperCase()
+     
+       do{ let pregDesc = prompt("Ingrese cupon de descuento").toUpperCase()
         if (pregDesc == "DESCUENTO") {
             let totalDesc = (total * 0.9);
             console.log("Total con descuento : $" + totalDesc)
-        } else {
-            alert("Este cupon expiro o no es valido")
-            let otroCupon = prompt("Quiere probar otro cupon? (Si/No)").toUpperCase()
-            if (otroCupon == "si"){
-                pregDesc = prompt("Ingrese cupon de descuento ").toUpperCase()
+            cupon = true
+           }
+        else if (pregDesc != "DESCUENTO") {
+            alert("Este cupon ya expiro o no es valido!")
+            let otroCup = prompt("Quiere probar otro cupon? (Si/No)").toLowerCase()
+            if (otroCup == "si") {
+                cupon = false;
             }
-            else if (otroCupon == "no") {
-                iniciar= false
+            else if (otroCup == "no") {
+                cupon = true;
             }
-        }
-
-    }
-    
-
+           }
+    }while(cupon==false)
 }
 
 let iniciar = true;
 do{
-    let comenzar = prompt("Elija una opcion (inresando el numero correspondiente) : \n1-Menu\n2-Ordenar\n3-Salir")
+    let comenzar = prompt("Elija una opcion (inresando el numero correspondiente) : \n1-Menu\n2-Ordenar\n3-Añadir producto al menu (solo uso del personal)\n4-Salir")
 
-    while (comenzar != 1 && comenzar != 2 && comenzar != 3) {
-        alert("Por favor, elija una de las 4 opciones")
+    while (comenzar != 1 && comenzar != 2 && comenzar != 3 && comenzar != 4) {
+        alert("Por favor, elija una de las 3 opciones")
 
-        comenzar = prompt("Elija una opcion (inresando el numero correspondiente) : \n1-Menu\n2-Ordenar\n3-Salir")
+        comenzar = prompt("Elija una opcion (inresando el numero correspondiente) : \n1-Menu\n2-Ordenar\n3-Añadir producto al menu (solo uso del personal)\n4-Salir")
     } 
         // MENU
     if (comenzar == 1) {
 
-        let todosLosProductos = menu.map((menu) => menu.nombre + " $" + menu.precio);
-        alert(todosLosProductos.join(" - "));
-    
+        for (const pizza of pizzas) {
+            console.log("Nombre: " + pizza.nombre + "\nIngredientes: " + pizza.ingredientes + "\nPrecio: $" + pizza.precio);
+        }
     }
 
         // ORDENAR
@@ -70,41 +76,50 @@ do{
                 case "margarita":
                     margarita.cantidad++;
                     total = total + margarita.precio;
-                    alert("Se agrego una margarita a tu pedido")
+                    alert("Se agrego una Margarita a tu pedido")
                     break;
                 case "rucula":
                     rucula.cantidad++;
                     total = total + rucula.precio;
-                    alert("Se agrego una rucula a tu pedido")
+                    alert("Se agrego una Rucula a tu pedido")
                     break;
                 case "fugazzeta":
                     fugazzeta.cantidad++;
                     total = total + fugazzeta.precio;
-                    alert("Se agrego una fugazzeta a tu pedido")
+                    alert("Se agrego una Fugazzeta a tu pedido")
                     break;
                 case "calabresa":
                     calabresa.cantidad++;
                     total = total + calabresa.precio;
-                default:
-                    alert("no contamos con esa variedad");
+                    alert("Se agrego una Calabresa a tu pedido")
                     break;
+                case "esc":
+                    alert("No has elejido ninugo producto")
+                    break;
+                default:
+                    alert("No contamos con esa variedad");
             }
-            pedido = prompt("Que pizza quiere pedir? (esc para terminar)").toLowerCase();
+            if (pedido != "esc") { pedido = prompt("Que pizza quiere agregar? (listo para terminar)").toLowerCase(); }
+            
         
-        } while (pedido != "esc") { iniciar = false }
-        
-        console.log("Su pedido es : \n" + margarita.cantidad + " Margarita \n" + rucula.cantidad + " Rucula \n" + fugazzeta.cantidad + " Fugazzeta \n" + calabresa.cantidad + " Calabresa")
-
+        } while (pedido != "esc" && pedido != "listo") iniciar = false 
+        // CANTIDAD DE PIZZAS PEDIDAS
+        if(pedido=="listo"){console.log("Su pedido es : \n" + margarita.cantidad + " Margarita \n" + rucula.cantidad + " Rucula \n" + fugazzeta.cantidad + " Fugazzeta \n" + calabresa.cantidad + " Calabresa")
+        // TOTAL $
         console.log("Total del pedido : $" + total)
 
-        if (total!=0){descuento()}
+        if (total!=0){descuento()}}
     }
-        // SALIR
+    // AÑADIR PRODUCTO
     else if (comenzar == 3) {
-        iniciar=false
+        agregarPizza()
+        alert("Producto añadido!")
     }
-  
+    // SALIR
+    else if (comenzar == 4) {
+        iniciar = false
+    }
 
-}while(iniciar==true)
+} while(iniciar==true)
  
 alert("Muchas gracias!")
