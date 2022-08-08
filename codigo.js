@@ -56,14 +56,15 @@ do{
     let comenzar = prompt("Elija una opcion (inresando el numero correspondiente) : \n1-Menu\n2-Ordenar\n3-Añadir producto al menu (solo uso del personal)\n4-Salir")
 
     while (comenzar != 1 && comenzar != 2 && comenzar != 3 && comenzar != 4) {
-        alert("Por favor, elija una de las 3 opciones")
+        alert("Por favor, elija una de las 4 opciones")
 
         comenzar = prompt("Elija una opcion (inresando el numero correspondiente) : \n1-Menu\n2-Ordenar\n3-Añadir producto al menu (solo uso del personal)\n4-Salir")
     } 
         // MENU
     if (comenzar == 1) {
-
+        console.log("-NUESTRO MENU-")
         for (const pizza of pizzas) {
+            
             console.log("Nombre: " + pizza.nombre + "\nIngredientes: " + pizza.ingredientes + "\nPrecio: $" + pizza.precio);
         }
     }
