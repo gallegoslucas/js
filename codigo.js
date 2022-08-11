@@ -1,10 +1,10 @@
 
 let total = 0;
 const pizzas = [
-    { nombre: "margarita", precio: 800, ingredientes: "Salsa de tomate, ajo, oregano, albahaca, aceite de oliva" },
-    { nombre: "fugazzeta", precio: 900, ingredientes: "Salsa de tomate, mozzarella, cebolla" },
-    { nombre: "calabresa", precio: 900, ingredientes: "Salsa de tomate, mozzarella, calabresa" },
-    { nombre: "rucula", precio: 950, ingredientes: "Salsa de tomate, mozzarella, rucula, jamon crudo, parmesano"},
+    { nombre: "Rucula", ingredientes: "Salsa de tomate, mozzarella, rucula, jamon crudo, parmesano", precio: 950 },
+    { nombre: "Fugazzeta", ingredientes: "Salsa de tomate, mozzarella, cebolla", precio: 900 },
+    { nombre: "Margarita", ingredientes: "Salsa de tomate, ajo, oregano, albahaca, aceite de oliva", precio: 800 },
+    { nombre: "Calabresa", ingredientes: "Salsa de tomate, mozzarella, calabresa", precio: 900 },
 ];
 class menu{
     constructor(nombre, ingredientes, precio,cantidad,) {
@@ -63,11 +63,9 @@ do{
         // MENU
     if (comenzar == 1) {
         console.log("-NUESTRO MENU-")
-        for (const pizza of pizzas) {
-            
-            console.log("Nombre: " + pizza.nombre + "\nIngredientes: " + pizza.ingredientes + "\nPrecio: $" + pizza.precio);
-        }
-    }
+        pizzas.sort((a, b) => a.precio - b.precio);
+        console.table(pizzas)
+       }
 
         // ORDENAR
     else if (comenzar == 2) {
@@ -109,7 +107,10 @@ do{
         // TOTAL $
         console.log("Total del pedido : $" + total)
         // DESCUENTO
-        if (total!=0){descuento()}}
+            if (total != 0) { descuento() };
+            const horaPedido = new Date()
+            console.log("Fecha y hora del pedido : " ,horaPedido.toLocaleString())
+        }
     }
     // AÑADIR PRODUCTO
     else if (comenzar == 3) {
